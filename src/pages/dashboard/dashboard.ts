@@ -688,10 +688,10 @@ export class DashboardPage {
           console.log("Kannan:" + res.favorite);
           if (res.favorite == 0) {
             //this.conf.sendNotification("Unfavorited successfully");
-            this.conf.sendNotification(res.msg[0]['result']);
+            this.conf.sendNotification(res.msg['result']);
           } else {
             //this.conf.sendNotification("Favourite successfully");
-            this.conf.sendNotification(res.msg[0]['result']);
+            this.conf.sendNotification(res.msg['result']);
           }
 
 
@@ -1415,7 +1415,7 @@ export class DashboardPage {
     // to initialize push notifications
 
     const options: PushOptions = {
-      android: {senderID: ""},
+      android: {},
       ios: {
         alert: 'true',
         badge: true,

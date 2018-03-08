@@ -99,6 +99,9 @@ export class UnitdetailsPage {
 	public serviceviewenable: boolean = false;
 	public commentviewenable: boolean = false;
 	public engineviewenable: boolean = false;
+	public uniteditable: boolean = false;
+	public unitdeletable: boolean = false;	
+	
 	alarmstatus;
 	voltguagelabel;
 	voltguagecolors;
@@ -163,11 +166,30 @@ export class UnitdetailsPage {
 	public SERVICEVIEWACCESS: any;
 	public ALARMVIEWACCESS: any;
 	public ENGINEDETAILVIEWACCESS: any;
+	public UNITEDITACCESS: any;
+	public UNITDELETEACCESS: any;
 	constructor(public modalCtrl: ModalController, public alertCtrl: AlertController, private conf: Config, public platform: Platform, public http: Http, private sanitizer: DomSanitizer, public NP: NavParams, public navCtrl: NavController, public navParams: NavParams) {
 		this.unitDetailData.loginas = localStorage.getItem("userInfoName");
 		this.unitDetailData.userId = localStorage.getItem("userInfoId");
 
 		this.ENGINEDETAILVIEWACCESS = localStorage.getItem("UNITS_ENGINEMODEL_VIEW");
+		this.UNITEDITACCESS = localStorage.getItem("UNITS_LISTING_EDIT");
+
+		if (this.UNITEDITACCESS == 1) {
+			this.uniteditable = false;
+		} else {
+			this.uniteditable = true;
+		}
+
+		this.UNITDELETEACCESS = localStorage.getItem("UNITS_LISTING_DELETE");
+
+		if (this.UNITDELETEACCESS == 1) {
+			this.unitdeletable = false;
+		} else {
+			this.unitdeletable = true;
+		}
+
+
 		if (this.ENGINEDETAILVIEWACCESS == 1) {
 			this.engineviewenable = false;
 		} else {
@@ -1565,23 +1587,29 @@ export class UnitdetailsPage {
 	/* @doConfirm called for alert dialog box **/
 
 	/******************************************/
-	doConfirm(id) {
-		console.log("Deleted Id" + id);
-		let confirm = this.alertCtrl.create({
-			message: 'Are you sure you want to delete this unit?',
-			buttons: [{
-				text: 'Yes',
-				handler: () => {
-					this.deleteEntry(id);
-				}
-			},
-			{
-				text: 'No',
-				handler: () => {
-				}
-			}]
-		});
-		confirm.present();
+	doConfirm(id, access) {
+
+		if (access == true) {
+			this.rolePermissionMsg = this.conf.rolePermissionMsg();
+			this.showAlert('DELETE', this.rolePermissionMsg)
+		} else {
+			console.log("Deleted Id" + id);
+			let confirm = this.alertCtrl.create({
+				message: 'Are you sure you want to delete this unit?',
+				buttons: [{
+					text: 'Yes',
+					handler: () => {
+						this.deleteEntry(id);
+					}
+				},
+				{
+					text: 'No',
+					handler: () => {
+					}
+				}]
+			});
+			confirm.present();
+		}
 	}
 
 	// Remove an existing record that has been selected in the page's HTML form
@@ -1656,15 +1684,21 @@ export class UnitdetailsPage {
 				// this.networkType = this.conf.serverErrMsg();// + "\n" + error;
 			});
 	}
-	doAction(item, act, unitId, from) {
-		console.log("Item From Do Action:" + JSON.stringify(item));
-		this.navCtrl.setRoot(AddUnitPage, {
-			record: item,
-			act: act,
-			unitId: unitId,
-			from: from
-		});
-		return false;
+	doAction(item, act, unitId, from, access) {
+
+		if (access == true) {
+			this.rolePermissionMsg = this.conf.rolePermissionMsg();
+			this.showAlert('EDIT', this.rolePermissionMsg)
+		} else {
+			console.log("Item From Do Action:" + JSON.stringify(item));
+			this.navCtrl.setRoot(AddUnitPage, {
+				record: item,
+				act: act,
+				unitId: unitId,
+				from: from
+			});
+			return false;
+		}
 	}
 
 	selectVoltage(voltage) {
