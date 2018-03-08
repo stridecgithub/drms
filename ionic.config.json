@@ -1,6 +1,6 @@
 {
   "name": "drms",
-  "app_id": "",
+  "app_id": "1:7125886423:android:363eb6b9df252043",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
