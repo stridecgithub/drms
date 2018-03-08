@@ -1415,7 +1415,7 @@ export class DashboardPage {
     // to initialize push notifications
 
     const options: PushOptions = {
-      android: {},
+      android: {senderID: ""},
       ios: {
         alert: 'true',
         badge: true,
