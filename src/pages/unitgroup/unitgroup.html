@@ -1,0 +1,91 @@
+<!--
+  Generated template for the CompanygroupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <button ion-button clear class="left-header-btn" menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{pageTitle}}</ion-title>
+    <div class="right-header-btns">
+      <button class="search">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button class="notification-bell" (click)="notification()">
+        <ion-icon name="notifications"></ion-icon>
+        <span class="counter" *ngIf="notcount>0">{{notcount}}</span>
+      </button>
+      <button class="profile">
+        <img src="{{profilePhoto}}" width="28" height="28">
+      </button>
+    </div>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <button class="add-unit-btn" (click)="doAdd()"  *ngIf="CREATEACCESS==1">
+        <ion-icon name="add"></ion-icon>&nbsp;&nbsp;&nbsp;Add New Unit Group</button>
+      <div class="error" *ngIf="unitgroupAllLists.length==0">No unit group entries found</div>
+    
+      <div class="filter" *ngIf="totalCount>0" (click)="doSort()"> {{sortLblTxt}}
+        <ion-icon name="arrow-down" *ngIf="sortLblTxt === Favourites"></ion-icon>
+        <ion-icon name="arrow-down" *ngIf="reportData.sortascdesc === 'desc' && sortLblTxt !== Favourites"></ion-icon>
+        <ion-icon name="arrow-up" *ngIf="reportData.sortascdesc === 'asc'  && sortLblTxt !== Favourites"></ion-icon>
+      </div>
+
+
+  <ion-list>
+    <ion-item-sliding #item class="list-item" *ngFor="let unitgroup of unitgroupAllLists">
+      <ion-item (click)="view(unitgroup.unitgroup_id, unitgroup.colorcode, unitgroup.cname, unitgroup.favoriteindication,unitgroup.unitgroup_name,unitgroup.totalunits,unitgroup.remark,unitgroup.createdOn)">
+        <!-- <button class="{{unitgroup.colorcodeindication}}" style="float: left ;width:8px;height: 47px;">
+
+        </button> -->
+
+        <span class="initial"  [ngStyle]="{'background-color': '#' + unitgroup.colorcode}">{{unitgroup.cname}}</span>
+    
+        <div class="date-time">{{unitgroup.createdOn}}</div>
+      
+        <button (click)="favorite(unitgroup.unitgroup_id)" class="{{unitgroup.favoriteindication}}" style="float: right ;width:30px;height:30px;background-color:#ffffff"></button>
+        <div class="group-info">
+          <h2>
+            <b>{{unitgroup.unitgroup_name}}</b>
+          </h2>
+          <h3>
+            <b>Total Units:{{unitgroup.totalunits}}</b>
+          </h3>
+
+        </div>
+
+        <div class="list-favorite">
+            <button (click)="favorite(unitgroup.unitgroup_id)" style="text-align:right;">
+              <ion-icon name="star-outline" *ngIf="unitgroup.favoriteindication === 0 || unitgroup.favoriteindication === 'unfavorite'"></ion-icon>
+              <ion-icon name="star" class="favorite" *ngIf="unitgroup.favoriteindication === 1 || unitgroup.favoriteindication === 'favorite'"></ion-icon>
+            </button>
+          </div>
+
+      </ion-item>
+      
+      <ion-item-options side="right" class="list-item-options">
+        <button ion-button class="edit-btn"  (click)="doEdit(unitgroup,'edit')"  *ngIf="EDITACCESS==1">
+            <img width="25" src="assets/imgs/edit@2x.png">Edit
+          </button>
+          <button ion-button class="del-btn" (click)="doConfirm(unitgroup.unitgroup_id,unitgroup)"  *ngIf="DELETEACCESS==1">
+            <ion-icon name="trash"></ion-icon>Delete
+          </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="unitgroupAllLists.length!=0">
+    <ion-infinite-scroll-content loadingText="Loading More Data"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+<progress-bar [progress]="footerBar"></progress-bar>
+</ion-footer>
+

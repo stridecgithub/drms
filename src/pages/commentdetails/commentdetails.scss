@@ -1,0 +1,145 @@
+page-commentdetails {
+ion-content .scroll-content {
+		margin-bottom: 0;
+	}
+
+  .servicing-details-top-row {
+    padding: 15px 10px;
+    border-bottom: 1px solid #848484;
+    img {
+    float: left;
+    padding: 2px;
+	margin-right:5px;
+      border-radius: 50%;
+    }
+    h4 {
+      margin: -20px 0 5px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    h5 {
+      margin: 0 0 5px 0;
+      font-size: 14px;
+    }
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: lighter;
+    }
+    span {
+      font-weight: normal;
+    }
+  }
+  .switchevent{
+    border-bottom: 0px solid #d6d6d6;
+    overflow: hidden;
+    // img{
+    //   width: 20%;
+    //   float: left;
+    //   padding: 14px 12px 0px 16px;
+    // }
+    .angel{
+        float: right;
+        color: #006BF4;
+        font-size: 24px;
+        padding: 20px 20px 0px 0px;
+      }
+    ion-col{
+      h1{
+        font-size: 16px;
+        color: #000000;
+        font-weight: bold;
+        margin-top: 14px;
+      }
+      p{
+        text-align: 14px;
+        line-height: 20px;
+        margin-top: -6px;
+        float: left;
+        font-size: 12px;
+      }
+    }
+    .time{
+      float: right;
+      margin: 18px -26px 0 0;
+       color: #424242;
+      font-size: 12px;
+    }
+  }
+  
+  .event-head {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #848484;
+    div {
+      padding: 10px 5px;
+      position: relative;
+      h3 {
+        margin: 0;
+     
+          font-size: 16px;
+      }
+      p {
+        margin: 0;
+        font-weight: lighter;
+      }
+      .span-text {
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        .span-icon-service {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+         /* background-color: blue;*/
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .event-body {
+    padding:10px 10px 0 10px;
+    h5 {
+      margin: 0;
+      font-size: 15px;
+    }
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+  }
+  .event-body-border {
+    border-bottom: 1px solid #006BF4;
+    padding: 5px;
+    margin: 0 5px 20px 5px;
+  }
+
+  .event-detail-btn {
+    position: absolute;
+    width: 100%;
+    bottom: -1px;
+    div {
+      display: flex;
+      text-align: center;
+    }
+    ion-col {
+      padding: 0;
+    }
+    button {
+      background-color: #00BA28;
+      border-radius: 0;
+      color: #FFFFFF;
+      height: 40px;
+      border: #00BA28 1px solid;
+      font-size: 14px;
+      flex: 1;
+    }
+    img {
+      margin: 0 10px 0 0;
+    }
+    ion-icon {
+      margin: 0 10px 0 0;
+    }
+  }
+}
+

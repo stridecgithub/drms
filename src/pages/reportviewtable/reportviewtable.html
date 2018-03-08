@@ -1,0 +1,199 @@
+<!--
+  Generated template for the MessagesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="previous()">
+          <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>Report</ion-title>
+      <div class="right-header-btns"  *ngIf="graphview==0">
+        <button class="open" (click)="onButtonClick()">
+          <ion-icon name="open"></ion-icon>
+        </button>
+      </div>
+    </ion-navbar>
+    <div class="download-option" *ngIf="buttonClicked">
+      <ion-row>
+        <ion-list>
+          <!-- <a href="javascript:void(0)" (click)="download(1)">PDF</a> -->
+          <a href="{{pdfDownloadLink}}">PDF</a>
+        </ion-list>
+        <ion-list>
+           <a href="{{csvDownloadLink}}">CSV</a>
+          <!-- <a href="javascript:void(0)" (click)="download(2)">CSV</a> -->
+        </ion-list>
+      </ion-row>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding class="ion-content">
+  <div class="error" *ngIf="success==1" style="color:red;text-align:center">Request report generated successfully.kindly check your valid email address</div>
+  <div class="error" *ngIf="totalcount==0 && success==0" style="color:red;text-align:center">{{noentrymsg}}</div>
+
+  
+  <div *ngIf="requestsuccessview>0">{{requestsuccess}}</div>
+
+  <!-- <div *ngIf="pdfdownloadview>0">Report generated successfully as PDF format. -->
+  <!--click here to below link<br> <a href="{{pdfDownloadLink}}">Download</a-->
+  <!-- </div> -->
+  <!--br>
+    <a href="{{pdfDownloadLink}}">Download</a-->
+
+
+
+
+  <div class="unit-detail" *ngIf="success==0">
+    <div class="unit-title">
+      <h3>{{unitname}}</h3>
+      <img src="assets/imgs/denyo_logo.png" />
+    </div>
+  </div>
+
+  <div class="info" *ngIf="success==0">
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Next Servicing Date</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{nextservicedate}}</h2>
+      </ion-col>
+    </ion-row>
+    <br/>
+    <ion-row>
+      <ion-col col-6>
+        <h1>Controller ID</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{controllerid}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>NEA PLate No.</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{neaplateno}}</h2>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Unit Group</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{unitgroupname}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Generator Model</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{generatormodel}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Serial Number</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{serialnumber}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Contact Personnel</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{contactnames}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Contact Number</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{contactnumbers}}</h2>
+      </ion-col>
+    </ion-row>
+    <br/>
+    <ion-row>
+      <ion-col col-6>
+        <h1>Deployed Location</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{location}}</h2>
+      </ion-col>
+    </ion-row>
+    <br/>
+    <ion-row>
+      <ion-col col-4>
+        <h1>Start Date:</h1>
+      </ion-col>
+      <ion-col col-4>
+        <h1>End Date:</h1>
+      </ion-col>
+      <ion-col col-4>
+        <h1>Time Frame</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <h2>{{fromdatedisplay}}</h2>
+      </ion-col>
+      <ion-col col-4>
+        <h2>{{todatedisplay}}</h2>
+      </ion-col>
+      <ion-col col-4>
+        <h2>{{timeframe}}</h2>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="table-view" *ngIf="graphview==0  && success==0">
+
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let headitem  of headLists">{{headitem}}</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let valueitem  of headValue; let i = index">
+
+          <td *ngFor="let valueitems  of valueitem; let j = index">{{valueitems}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+  <div class="table-view" *ngIf="graphview>0">
+    <iframe width="1000px" height="500" [src]="url" frameborder="0"></iframe>
+  </div>
+</ion-content>
+<ion-footer>
+<progress-bar [progress]="footerBar"></progress-bar>
+</ion-footer>

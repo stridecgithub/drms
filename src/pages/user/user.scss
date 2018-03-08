@@ -1,0 +1,28 @@
+page-user {
+	.list-item .item-inner .label-md {
+		  margin: 6px 0 8px 0;
+	}
+    .add-unit-btn {
+      background: #424242;
+      border-radius: 0;
+      display: block;
+      width: 100%;
+      height: 40px;
+      color: #fff;
+      font-size: 16px;
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+    .filter {
+      text-align: right;
+      padding: 10px 20px 5px;
+      border-bottom: #979797 2px solid;
+    }
+    .date-time {
+      float: right;
+      font-size: 10px;
+      margin-top: 3px;
+      margin-right: 10px;
+    }
+}

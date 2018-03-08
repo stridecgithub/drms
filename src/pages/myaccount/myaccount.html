@@ -1,0 +1,191 @@
+<!--
+  Generated template for the MyaccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+
+
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button clear class="left-header-btn" menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Profile</ion-title>
+    <div class="right-header-btns">
+      <button *ngIf="EDITACCESS==1" ion-button clear class="edit-btn" (click)="doEdit(userId,'userinfo')" style="text-align:right;">
+        <img class="icon-size-two" src="assets/imgs/edit@2x.png">
+      </button>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+  <div class="user-img">
+    <img src="{{photo}}" width="100" height="100" alt="">
+    <div class="user-name">
+      {{firstname}} {{lastname}}
+    </div>
+    <div class="user-hashtag">{{hashtag}}</div>
+    <div class="user-company">
+      {{job_position}} , {{company_group}}
+    </div>
+  </div>
+
+
+  <div class="info">
+    <ion-row>
+      <ion-col col-6>
+        <h1>Username</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{username}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Email</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{email}}</h2>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Contact Number</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{contactnumber}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Company</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{company_group}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>Position</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2 style="margin-bottom:0;">{{job_position}}</h2>
+        <a (click)="viewOrgChart()" href="#" style="margin-bottom:10px;display:block;color:#039bff;">View in Org Chart</a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <h1>User Role</h1>
+      </ion-col>
+      <ion-col col-6>
+        <h2>{{role}}</h2>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row style="border-bottom:1px solid #d6d6d6;border-top:1px solid #d6d6d6;width:91%;margin-left:15px;">
+      <ion-col col-6 style="margin-top:13px;left:-23px;">
+        <h1 style="margin-left:18px;">Change Password </h1>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button clear style="font-size: 24px;margin-left: 79%;" (click)="changepassword()">
+          <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+  <!-- <div class="custom-tab">
+    <a class="" href="#" aria-selected="true">
+        <ion-icon class="icon icon-md ion-md-help"></ion-icon>
+        <span class="">Dashboard</span>
+    </a>
+    
+    <a class="" href="#">
+        <ion-icon class="icon icon-md ion-md-help"></ion-icon>
+        <span class="">Units</span>
+    </a>
+    
+    <a class="" href="#">
+        <ion-icon class="icon icon-md ion-md-help"></ion-icon>
+        <span class="">Calendar</span>
+    </a>
+    
+    <a class="" href="#">
+        <ion-icon class="icon icon-md ion-md-help"></ion-icon>
+        <i class="chat-count">2</i>
+        <span class="">Message</span>
+    </a>
+    
+    <a class="" href="#">
+        <ion-icon class="icon icon-md ion-md-help"></ion-icon>
+        <span class="">Org Chart</span>
+    </a>
+    </div>  -->
+
+
+
+  <!-- <div id="user-main-info" padding>
+    <div class="user-photo">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{photo}}">
+      </ion-avatar>
+    </ion-item>
+  </div>
+    <div class="user-info">
+      <ul class="user-info-list">
+        <li>
+          <strong>User ID</strong> {{userid}}</li>
+        <li>
+          <strong>Password</strong> *********</li>
+      </ul>
+    </div>
+    <div class="user-hashtag">
+      <b>Personal Hashtag:</b> {{hashtag}}</div>
+  </div>
+  
+
+
+ 
+  <div id="user-meta" padding>
+    <ul class="user-info-list">
+      <li>
+        <strong>Roles</strong> {{role}}</li>
+      <li>
+        <strong>Email</strong> {{email}}</li>
+      <li>
+        <strong>Country</strong> {{country}}</li>
+      <li>
+        <strong>Job Position</strong> {{job_position}}</li>
+      <li>
+        <strong>Role in ORG Chart</strong>
+        <a (click)="viewOrgChart()" href="#">View in Org Chart</a>
+      </li>
+    </ul>
+  </div> -->
+</ion-content>
+<ion-footer>
+  <progress-bar [progress]="footerBar"></progress-bar>
+</ion-footer>

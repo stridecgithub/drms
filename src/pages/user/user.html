@@ -1,0 +1,72 @@
+<!--
+  Generated template for the CompanygroupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <button ion-button clear class="left-header-btn" menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{pageTitle}}</ion-title>
+    <div class="right-header-btns">
+      <button class="search">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button class="notification-bell" (click)="notification()">
+        <ion-icon name="notifications"></ion-icon>
+        <span class="counter" *ngIf="notcount>0">{{notcount}}</span>
+      </button>
+      <button class="profile">
+        <img src="{{profilePhoto}}" width="28" height="28">
+      </button>
+    </div>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <button class="add-unit-btn" (click)="doAdd()" *ngIf="CREATEACCESS==1">
+    <ion-icon name="add"></ion-icon>&nbsp;&nbsp;&nbsp;Add New User</button>
+  <div class="error" *ngIf="totalCount==0">No user entries found</div>
+
+  <div class="filter" *ngIf="totalCount>0" (click)="doSort()"> {{sortLblTxt}}
+    <ion-icon name="arrow-down" *ngIf="sortLblTxt === Name"></ion-icon>
+    <ion-icon name="arrow-down" *ngIf="reportData.sortascdesc === 'desc' && sortLblTxt !== Name"></ion-icon>
+    <ion-icon name="arrow-up" *ngIf="reportData.sortascdesc === 'asc'  && sortLblTxt !== Name"></ion-icon>
+  </div>
+
+
+  <ion-list>
+    <ion-item-sliding #item class="list-item" *ngFor="let user of userAllLists">
+      <ion-item *ngIf="user.staff_id!='1'">
+
+        <h5 style="padding-top:3px">
+          <b>User ID:</b>{{user.username}}</h5>
+        <h5>
+          <b>Name:</b>{{user.firstname}} {{user.lastname}}</h5>
+        <h5>
+          <b>Email:</b>{{user.email}}</h5>
+        <h5>
+          <b>Group:</b>{{user.companygroup_name}}</h5>
+
+      </ion-item>
+      <ion-item-options side="right" class="list-item-options">
+        <button ion-button class="edit-btn" (click)="doEdit(user,'edit')" *ngIf="EDITACCESS==1">
+          <img width="25" src="assets/imgs/edit@2x.png">Edit
+        </button>
+        <button ion-button class="del-btn" (click)="doConfirm(user.staff_id,user)" *ngIf="DELETEACCESS==1">
+          <ion-icon name="trash"></ion-icon>Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="totalCount!=0">
+    <ion-infinite-scroll-content loadingText="Loading More Data"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+  <progress-bar [progress]="footerBar"></progress-bar>
+</ion-footer>
