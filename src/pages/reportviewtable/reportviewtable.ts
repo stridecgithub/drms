@@ -18,7 +18,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as papa from 'papaparse';
+//import * as papa from 'papaparse';
 @Component({
   selector: 'page-reportviewtable',
   templateUrl: 'reportviewtable.html',
@@ -609,35 +609,8 @@ export class ReportviewtablePage {
       }
     });
   }
-  csv() {
+  
 
-    let csv = papa.unparse({
-      fields: this.headerRow,
-      data: this.csvData
-    });
-
-    // Dummy implementation for Desktop download purpose
-    var blob = new Blob([csv]);
-    var a = window.document.createElement("a");
-    a.href = window.URL.createObjectURL(blob);
-    a.download = "newdata.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    //this.readCsvData();
-    //http://denyoappv2.stridecdev.com/report.csv
-  }
- 
-
-  private extractData(res) {
-    let csvData = res['_body'] || '';
-    let parsedData = papa.parse(csvData).data;
-
-    this.headerRow = parsedData[0];
-
-    parsedData.splice(0, 1);
-    this.csvData = parsedData;
-  }
 
 
   trackByFn(index: any, item: any) {
